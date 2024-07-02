@@ -1,3 +1,4 @@
+"""Still learning and coding"""
 import logging
 from typing import Final
 from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove, Update, InlineKeyboardButton, InlineKeyboardMarkup )
