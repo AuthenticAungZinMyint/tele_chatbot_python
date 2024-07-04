@@ -18,7 +18,7 @@ BOOK_GENRE, BOOK_TITLE, BOOK_PRICE, PHOTO, SUMMARY = range(5)
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """"Start conversation and ask for used book's categorie"""
     reply_keyboard = [['Thriller', 'Translation', 'Rare', 'Novel', 'Literature']]
-    await update.message.reply_text(
+    await update.message.reply_photo(photo="images/intro.jpg", caption=
         "<b>Welcome to the used book selling Bot!\n"
         "Let's get some detail about the book you're selling.\n"
         "What is your book's genere?</b>",
@@ -44,7 +44,7 @@ async def book_title(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     """Store book title and ask for price"""
     user = update.message.from_user
     context.user_data['book_title'] = update.message.text
-    logger.info('Book title of %s: %s', user.first_name, update.message.text)
+    #logger.info('Book title of %s: %s', user.first_name, update.message.text)
     await update.message.reply_text(
         f"<b>Your book title is {update.message.text}\n"
         f"Expected price of your book?</b>",
@@ -56,7 +56,7 @@ async def book_price(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Stroe price and ask for photo"""
     user = update.message.from_user
     context.user_data['book_price'] = update.message.text
-    logger.info('Book price of %s: %s', user.first_name, update.message.text)
+    #logger.info('Book price of %s: %s', user.first_name, update.message.text)
     await update.message.reply_text(
         "<b>Success! updated the price of book\n"
         "Now Please upload a photo of your book</b>",
@@ -125,7 +125,7 @@ def main() -> None:
     #handle when user not in conversation but send start
     application.add_handler(CommandHandler('start', start))
     
-    print("Polling...")
+    
     application.run_polling(poll_interval=5)
     
 if __name__ == "__main__":
